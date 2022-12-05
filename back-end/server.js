@@ -54,4 +54,4 @@ app.listen(3000, () => {
 
  
 
- //Run in terminal to start. 
+ //Run in terminal to start. nodemon and npm start
