@@ -7,30 +7,22 @@ const List = require('./models/DataList.js')
 app.use(express.json())
 app.use(cors())
 
-                            //Post route
-app.post('/List', (req, res) => {
-    console.log(req)
-    List.create(req.body, (err, createdList) => {
-      console.log(req.body)
-      res.json(createdList)
-    })
-  })
-  
-                            //get route grabbing all data
+//                             Post route
+//                             get route grabbing all data
 //   app.get('/people', (req, res) => {
 //     People.find({}, (err, foundPeople) => {
 //       res.json(foundPeople)
 //     })
 //   })
   
-                            //delete route..
+//                             delete route..
 //   app.delete('/people/:id', (req, res) => {
 //     People.findByIdAndRemove(req.params.id, (err, deletedPerson) => {
 //       res.json(deletedPerson)
 //     })
 //   })
   
-                            //put route
+//                             put route
 //   app.put('/people/:id', (req, res) => {
 //     People.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPerson) => {
 //       res.json(updatedPerson)
