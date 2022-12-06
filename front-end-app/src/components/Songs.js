@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const Song = (props) => {
+const Songs = (props) => {
 
     return(
         <>
