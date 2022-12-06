@@ -1,12 +1,10 @@
-import {useState} from 'react'
-
-const Song = (props) => {
+const Songs = (props) => {
 
     return(
         <>
-            <h3>Name: {props.songs.name} </h3>
-            <h3>Artist: {props.songs.artist}</h3>
-            <h3>Link: {props.songs.link}</h3>
+            <h3>Name: {props.song.name} </h3>
+            <h3>Artist: {props.song.artist}</h3>
+            <h3>Link: {props.song.link}</h3>
         </>
     )
 }

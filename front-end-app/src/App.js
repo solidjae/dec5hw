@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-// import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
@@ -18,7 +16,7 @@ function App() {
      .then((response) => setSongs(response.data), (err) => console.log(err))
      .catch((error) => console.log(error))
   }
-
+  console.log(songs)
   //Create
   const handleCreate = (data) => {
      axios.post('http://localhost:3000/list', data)
@@ -41,21 +39,20 @@ function App() {
  }
 
  //Delete
-  const handleDelete = (event) => {
-     axios.delete('http://localhost:3000/list/' + event.target.value)
+  const handleDelete = (deletedSong) => {
+     axios.delete('http://localhost:3000/list/' + deletedSong._id)
      .then((response) => {
-      let newSongs = songs.filter((songs) => {
-        return songs._id !== response._id
+      let newSongs = songs.filter((song) => {
+        return song._id !== response._id
        })
       setSongs(newSongs)
+      getSongs()
      })
   }
 
   useEffect(() => {
      getSongs()
   }, [])
-
-
 
   return (
     <>
@@ -64,8 +61,8 @@ function App() {
       {songs.map((song) => {
         return (
           <>
-            <Songs songs = {song}/>
-            <Edit songs = {song} handleEdit = {handleEdit}/>
+            <Songs song = {song}/>
+            <Edit song = {song} handleEdit = {handleEdit}/>
             <button onClick={()=> {handleDelete(song)}}>Delete</button>
           </>
         )
