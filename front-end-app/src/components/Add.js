@@ -16,19 +16,12 @@ const Add = (props) => {
             <label htmlFor='name'>Name:</label>
             <input type='text' name='name'onChange={handleChange}/> 
 
-            <br/>
-            
-            <label htmlFor='artist'>Artist:</label>
-            <input type='text' name='artist' onChange={handleChange}/>
+            <br></br>
 
-            <br/>
-
-            <label htmlFor='link'>Link:</label>
-            <input type='text' name='link' onChange={handleChange}/>
-
+            <label htmlFor='age'>Age:</label>
+            <input type='number' name='age' onChange={handleChange}/>
             <input type='submit'/>
         </form>
     )
 }
-
 export default Add

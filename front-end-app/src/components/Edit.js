@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
     const Edit = (props) => {
         const [songs, setSongs] = useState({...props.song})
@@ -20,7 +20,7 @@ import {useState} from 'react'
                     <label htmlFor='name'>Name:</label>
                     <input type='text' name='name' onChange={handleChange} value={songs.name}/>
                     <br/>
-                    
+                    <br/>
                     <label htmlFor='artist'>Artist:</label>
                     <input type='text' name='artist' onChange={handleChange} value={songs.artist}/>
                     
