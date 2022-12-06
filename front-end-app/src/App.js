@@ -6,7 +6,7 @@ import axios from 'axios'
 import Songs from './components/Songs'
 import Add from './components/Add'
 import Edit from './components/Edit'
-import List from '../../back-end/models/DataList'
+
 
 function App() {
 
@@ -61,7 +61,16 @@ function App() {
     <>
       <h1>Songs List</h1>
       <Add handleCreate = {handleCreate}/>
-      
+      {songs.map((song) => {
+        return (
+          <>
+            <Songs songs = {song}/>
+            <Edit songs = {song} handleEdit = {handleEdit}/>
+            <button onClick={()=> {handleDelete(song)}}>Delete</button>
+          </>
+        )
+      })}
+
     </>
   );
 }
