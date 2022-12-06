@@ -7,7 +7,7 @@ const List = require('./models/DataList.js')
 app.use(express.json())
 app.use(cors())
 
-                            //Post route//
+                            //Post route
 app.post('/List', (req, res) => {
     console.log(req)
     List.create(req.body, (err, createdList) => {
@@ -23,14 +23,14 @@ app.post('/List', (req, res) => {
 //     })
 //   })
   
-                            //delete route..
+//                             delete route..
 //   app.delete('/people/:id', (req, res) => {
 //     People.findByIdAndRemove(req.params.id, (err, deletedPerson) => {
 //       res.json(deletedPerson)
 //     })
 //   })
   
-                            //put route
+//                             put route
 //   app.put('/people/:id', (req, res) => {
 //     People.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPerson) => {
 //       res.json(updatedPerson)
