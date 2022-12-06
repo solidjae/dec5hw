@@ -1,12 +1,10 @@
-// import logo from './logo.svg';
-// import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
 import Songs from './components/Songs'
 import Add from './components/Add'
 import Edit from './components/Edit'
-import List from '../../back-end/models/DataList'
+
 
 function App() {
 
@@ -76,3 +74,4 @@ function App() {
 }
 
 export default App;
+
