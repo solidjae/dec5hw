@@ -7,27 +7,35 @@ const List = require('./models/DataList.js')
 app.use(express.json())
 app.use(cors())
 
-//                             Post route
-//                             get route grabbing all data
-//   app.get('/people', (req, res) => {
-//     People.find({}, (err, foundPeople) => {
-//       res.json(foundPeople)
-//     })
-//   })
+                            //Post route
+app.post('/list', (req, res) => {
+    console.log(req)
+    People.create(req.body, (err, createdPerson) => {
+      console.log(req.body)
+      res.json(createdPerson)
+    })
+  })
   
-//                             delete route..
-//   app.delete('/people/:id', (req, res) => {
-//     People.findByIdAndRemove(req.params.id, (err, deletedPerson) => {
-//       res.json(deletedPerson)
-//     })
-//   })
+                            //get route grabbing all data
+  app.get('/list', (req, res) => {
+    People.find({}, (err, foundPeople) => {
+      res.json(foundPeople)
+    })
+  })
   
-//                             put route
-//   app.put('/people/:id', (req, res) => {
-//     People.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPerson) => {
-//       res.json(updatedPerson)
-//     })
-//   })
+                            //delete route..
+  app.delete('/list/:id', (req, res) => {
+    People.findByIdAndRemove(req.params.id, (err, deletedPerson) => {
+      res.json(deletedPerson)
+    })
+  })
+  
+                            //put route
+  app.put('/list/:id', (req, res) => {
+    People.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPerson) => {
+      res.json(updatedPerson)
+    })
+  })
 
 
 
