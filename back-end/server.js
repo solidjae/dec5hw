@@ -7,7 +7,7 @@ const List = require('./models/DataList.js')
 app.use(express.json())
 app.use(cors())
 
-                            //Post route
+                            //Post route//
 app.post('/List', (req, res) => {
     console.log(req)
     List.create(req.body, (err, createdList) => {
