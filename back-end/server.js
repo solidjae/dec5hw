@@ -9,48 +9,42 @@ app.use(cors())
 
 //                             Post route
 //                             get route grabbing all data
-//   app.get('/people', (req, res) => {
-//     People.find({}, (err, foundPeople) => {
-//       res.json(foundPeople)
-//     })
-//   })
+  app.post('/list', (req, res) => {
+   console.log(req)
+    List.create(req.body, (err, createdList) => {
+      // console.log(req.body)
+      res.json(createdList)
+    })
+  })
   
                             //get route grabbing all data
   app.get('/list', (req, res) => {
-    People.find({}, (err, foundPeople) => {
-      res.json(foundPeople)
+    List.find({}, (err, foundList) => {
+      res.json(foundList)
     })
   })
   
                             //delete route..
   app.delete('/list/:id', (req, res) => {
-    People.findByIdAndRemove(req.params.id, (err, deletedPerson) => {
-      res.json(deletedPerson)
+    List.findByIdAndRemove(req.params.id, (err, deletedList) => {
+      res.json(deletedList)
     })
   })
   
                             //put route
   app.put('/list/:id', (req, res) => {
-    People.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPerson) => {
-      res.json(updatedPerson)
+    List.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedList) => {
+      res.json(updatedList)
     })
   })
-
-
-
-
-
 
 app.listen(3000, () => {
     console.log('listening...')
  })
  
- 
  mongoose.connect('mongodb://localhost:27017/SongList')
  mongoose.connection.once('open', () => {
     console.log('connected to mongod...')
  })
-
- 
 
  //Run in terminal to start. nodemon and npm start
