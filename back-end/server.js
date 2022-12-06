@@ -8,13 +8,13 @@ app.use(express.json())
 app.use(cors())
 
                             //Post route
-// app.post('/people', (req, res) => {
-//     console.log(req)
-//     People.create(req.body, (err, createdPerson) => {
-//       console.log(req.body)
-//       res.json(createdPerson)
-//     })
-//   })
+app.post('/List', (req, res) => {
+    console.log(req)
+    List.create(req.body, (err, createdList) => {
+      console.log(req.body)
+      res.json(createdList)
+    })
+  })
   
                             //get route grabbing all data
 //   app.get('/people', (req, res) => {
