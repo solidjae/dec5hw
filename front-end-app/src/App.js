@@ -3,7 +3,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import ListSong from './components/ListFrontend'
+import Songs from './components/Songs'
 import Add from './components/Add'
 import Edit from './components/Edit'
 
@@ -60,7 +60,18 @@ function App() {
     <>
       <h1>Songs List</h1>
       <Add handleCreate = {handleCreate}/>
-      
+      <div>
+        {songs.map((song) => {
+          return (
+            <>
+              <Songs songs = {songs}/>
+              <Edit songs = {songs} handleEdit = {handleEdit}/>
+              <button onClick={()=> {handleDelete(songs)}}>Delete</button>
+            </>
+          )
+        })}
+      </div>
+
     </>
   );
 }
