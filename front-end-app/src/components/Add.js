@@ -12,14 +12,19 @@ const Add = (props) => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            
             <label htmlFor='name'>Name:</label>
             <input type='text' name='name'onChange={handleChange}/> 
 
-            <br></br>
+            <br/>
 
-            <label htmlFor='age'>Age:</label>
-            <input type='number' name='age' onChange={handleChange}/>
+            <label htmlFor='artist'>Artist:</label>
+            <input type='text' name='artist' onChange={handleChange}/>
+
+            <br/>
+
+            <label htmlFor='link'>Link:</label>
+            <input type='text' name='link' onChange={handleChange}/>
+
             <input type='submit'/>
         </form>
     )

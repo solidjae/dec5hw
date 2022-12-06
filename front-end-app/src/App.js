@@ -21,7 +21,8 @@ function App() {
      .then((response) => setSongs(response.data), (err) => console.log(err))
      .catch((error) => console.log(error))
   }
-
+  
+  
   //Create
   const handleCreate = (data) => {
      axios.post('http://localhost:3000/list', data)
@@ -42,13 +43,14 @@ function App() {
  }
 
  //Delete
-  const handleDelete = (event) => {
-     axios.delete('http://localhost:3000/list/' + event.target.value)
+  const handleDelete = (deletedSong) => {
+     axios.delete('http://localhost:3000/list/' + deletedSong._id)
      .then((response) => {
-      let newSongs = songs.filter((songs) => {
-        return songs._id !== response._id
+      let newSongs = songs.filter((song) => {
+        return song._id !== response._id
        })
       setSongs(newSongs)
+      getSongs()
      })
   }
 
@@ -56,24 +58,29 @@ function App() {
      getSongs()
   }, [])
 
-
-
   return (
-    <>
-      <h1>Songs List</h1>
-      <Add handleCreate = {handleCreate}/>
+    <div class="container">
+      
+      <div class="header">
+      <header>Songs List</header>
+      </div>
+
+      <button class = "btn btn-primary" onClick={() => setDisplay(!display)}>Add new Song</button>
+
+      {display ? <Add handleCreate = {handleCreate}/> : null}
+
       {songs.map((song) => {
         return (
-          <>
-            <Songs songs = {song}/>
-            <Edit songs = {song} handleEdit = {handleEdit}/>
+          <div class="card shadow p-3 mb-5 bg-body rounded">
+            <Songs song = {song}/>
+            <Edit song = {song} handleEdit = {handleEdit}/>
             <button onClick={()=> {handleDelete(song)}}>Delete</button>
-         </>
+            
+          </div>
         )
       })}
-   </>
+    </div>
   );
 }
 
 export default App;
-
