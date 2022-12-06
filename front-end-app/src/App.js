@@ -1,6 +1,10 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+
+import './App.css'
+
+
 import Songs from './components/Songs'
 import Add from './components/Add'
 import Edit from './components/Edit'
@@ -8,7 +12,8 @@ import Edit from './components/Edit'
 
 function App() {
 
-  const [songs, setSongs] = useState([])
+   const [display, setDisplay] = useState(false)
+   const [songs, setSongs] = useState([])
 
   //Get
   const getSongs = () => {
@@ -17,12 +22,11 @@ function App() {
      .catch((error) => console.log(error))
   }
   
-  console.log(songs)
+  
   //Create
   const handleCreate = (data) => {
      axios.post('http://localhost:3000/list', data)
      .then((response) => {
-        console.log(response)
         setSongs([...songs, response.data])
      })
   }
@@ -31,10 +35,9 @@ function App() {
   const handleEdit = (data) => {
     axios.put('http://localhost:3000/list/' + data._id, data)
     .then((response) => {
-       console.log(response)
-       let newSongs = (songs.map((song) => {
-        return songs._id !== data._id ? song : data
-       }))
+       let newSongs = songs.map((song) => {
+        return song._id !== data._id ? song : data
+       })
        setSongs(newSongs)
     })
  }
@@ -56,20 +59,27 @@ function App() {
   }, [])
 
   return (
-    <>
-      <h1>Songs List</h1>
-      <Add handleCreate = {handleCreate}/>
+    <div class="container">
+      
+      <div class="header">
+      <header>Songs List</header>
+      </div>
+
+      <button class = "btn btn-primary" onClick={() => setDisplay(!display)}>Add new Song</button>
+
+      {display ? <Add handleCreate = {handleCreate}/> : null}
+
       {songs.map((song) => {
         return (
-          <>
+          <div class="card shadow p-3 mb-5 bg-body rounded">
             <Songs song = {song}/>
             <Edit song = {song} handleEdit = {handleEdit}/>
             <button onClick={()=> {handleDelete(song)}}>Delete</button>
-          </>
+            
+          </div>
         )
       })}
-
-    </>
+    </div>
   );
 }
 
