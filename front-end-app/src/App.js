@@ -9,50 +9,58 @@ import Edit from './components/Edit'
 
 function App() {
 
-  const [people, setPeople] = useState([])
+  const [songs, setSongs] = useState([])
 
   //Get
-  // const getPeople = () => {
-  //    axios.get('http://localhost:3000/people')
-  //    .then((response) => setPeople(response.data), (err) => console.log(err))
-  //    .catch((error) => console.log(error))
-  // }
+  const getSongs = () => {
+     axios.get('http://localhost:3000/list')
+     .then((response) => setSongs(response.data), (err) => console.log(err))
+     .catch((error) => console.log(error))
+  }
 
   //Create
-  // const handleCreate = (data) => {
-  //    axios.post('http://localhost:3000/people', data)
-  //    .then((response) => {
-  //       console.log(response)
-  //       getPeople()
-  //    })
-  // }
+  const handleCreate = (data) => {
+     axios.post('http://localhost:3000/list', data)
+     .then((response) => {
+        console.log(response)
+        setSongs([...songs, response.data])
+     })
+  }
 
   //Edit
-//   const handleEdit = (data) => {
-//     axios.put('http://localhost:3000/people/' + data._id, data)
-//     .then((response) => {
-//        console.log(response)
-//        getPeople()
-//     })
-//  }
+  const handleEdit = (data) => {
+    axios.put('http://localhost:3000/list/' + data._id, data)
+    .then((response) => {
+       console.log(response)
+       let newSongs = (songs.map((song) => {
+        return songs._id !== data._id ? song : data
+       }))
+       setSongs(newSongs)
+    })
+ }
 
  //Delete
-  // const handleDelete = (event) => {
-  //    axios.delete('http://localhost:3000/people/' + event.target.value)
-  //    .then((response) => {
-  //     getPeople()
-  //    })
-  // }
+  const handleDelete = (event) => {
+     axios.delete('http://localhost:3000/list/' + event.target.value)
+     .then((response) => {
+      let newSongs = songs.filter((songs) => {
+        return songs._id !== response._id
+       })
+      setSongs(newSongs)
+     })
+  }
 
-  // useEffect(() => {
-  //    getPeople()
-  // }, [])
+  useEffect(() => {
+     getSongs()
+  }, [])
 
 
 
   return (
     <>
-      <h1>Hello, Am I working</h1>
+      <h1>Songs List</h1>
+      <Add handleCreate = {handleCreate}/>
+      
     </>
   );
 }
