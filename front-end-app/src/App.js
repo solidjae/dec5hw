@@ -9,7 +9,7 @@ import Edit from './components/Edit'
 
 function App() {
 
-  // const [people, setPeople] = useState([])
+  const [people, setPeople] = useState([])
 
   //Get
   // const getPeople = () => {
